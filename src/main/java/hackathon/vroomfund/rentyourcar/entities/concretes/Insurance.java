@@ -1,5 +1,6 @@
 package hackathon.vroomfund.rentyourcar.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,7 @@ public class Insurance {
     @Column(name = "insurance_company")
     private String insuranceCompany;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "insurance")
     private List<Car> cars;
 }

@@ -1,5 +1,6 @@
 package hackathon.vroomfund.rentyourcar.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,10 +28,18 @@ public class User {
     private String lastName;
     @Column(name = "identity_number")
     private String identityNumber;
+    @Column(name = "authenticated_user")
+    private Boolean authenticatedUser;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Car> cars;
+
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Rental> rentals;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<UserLicenseClass> userLicenseClasses;
 }

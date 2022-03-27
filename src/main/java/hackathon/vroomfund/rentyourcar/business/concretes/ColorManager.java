@@ -3,15 +3,29 @@ package hackathon.vroomfund.rentyourcar.business.concretes;
 import hackathon.vroomfund.rentyourcar.business.abstracts.ColorService;
 import hackathon.vroomfund.rentyourcar.core.utilities.results.DataResult;
 import hackathon.vroomfund.rentyourcar.core.utilities.results.Result;
+import hackathon.vroomfund.rentyourcar.core.utilities.results.SuccessDataResult;
+import hackathon.vroomfund.rentyourcar.core.utilities.results.SuccessResult;
+import hackathon.vroomfund.rentyourcar.dataAccess.abstracts.ColorDao;
 import hackathon.vroomfund.rentyourcar.entities.concretes.Color;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
 public class ColorManager implements ColorService {
+
+    private final ColorDao colorDao;
+
+    @Autowired
+    public ColorManager(ColorDao colorDao) {
+        super();
+        this.colorDao = colorDao;
+    }
+
     @Override
     public Result add(Color color) {
-        return null;
+        this.colorDao.save(color);
+        return new SuccessResult();
     }
 
     @Override
@@ -26,6 +40,6 @@ public class ColorManager implements ColorService {
 
     @Override
     public DataResult<List<Color>> getAll() {
-        return null;
+        return new SuccessDataResult<>(this.colorDao.findAll());
     }
 }

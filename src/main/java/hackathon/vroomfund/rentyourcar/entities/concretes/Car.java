@@ -1,5 +1,6 @@
 package hackathon.vroomfund.rentyourcar.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -42,6 +43,11 @@ public class Car {
     @JoinColumn(name = "insurance_id")
     private Insurance insurance;
 
+    @ManyToOne()
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @JsonIgnore
     @OneToMany(mappedBy = "car")
     private List<Rental> rentals;
 }

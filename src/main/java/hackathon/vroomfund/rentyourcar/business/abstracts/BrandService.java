@@ -8,7 +8,8 @@ import java.util.List;
 
 public interface BrandService {
     Result add(Brand brand);
-    Result update(Brand brand);
-    Result delete(Brand brand);
+    Result update(int id,String brandName);
+    Result delete(int id);
     DataResult<List<Brand>> getAll();
+    DataResult<Brand> getById(int id);
 }

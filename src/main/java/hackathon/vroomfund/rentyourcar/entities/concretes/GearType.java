@@ -1,5 +1,6 @@
 package hackathon.vroomfund.rentyourcar.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ public class GearType {
     @Column(name = "gear_type")
     private String gearType;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "gearType")
     private List<Car> cars;
 }
